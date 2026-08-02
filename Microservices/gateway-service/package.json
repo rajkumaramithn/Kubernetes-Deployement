@@ -1,8 +1,12 @@
 {
     "name": "microservice",
     "version": "1.0.0",
+    "scripts": {
+      "start": "node app.js"
+    },
     "dependencies": {
       "express": "^4.17.1",
       "axios": "^0.24.0"
     }
+    
   }

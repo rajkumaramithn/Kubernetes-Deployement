@@ -1,20 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-service
+  name: order-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user-service
+      app: order-service
   template:
     metadata:
       labels:
-        app: user-service
+        app: order-service
     spec:
       containers:
-      - name: user-service
-        image: your-dockerhub/user-service:latest
+      - name: order-service
+        image: order-service:v2
+        imagePullPolicy: Never
         ports:
         - containerPort: 3002
         resources:
@@ -26,7 +27,7 @@ spec:
             memory: "256Mi"
         env:
         - name: SERVICE_NAME
-          value: "user-service"
+          value: "order-service"
         livenessProbe:
           httpGet:
             path: /

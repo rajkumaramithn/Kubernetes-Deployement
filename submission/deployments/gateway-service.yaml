@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: gateway-service
-        image: your-dockerhub/gateway-service:latest
+        image: gateway-service:v2
+        imagePullPolicy: Never
         ports:
         - containerPort: 3003
         env:
