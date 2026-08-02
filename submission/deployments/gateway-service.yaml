@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gateway-service
+  template:
+    metadata:
+      labels:
+        app: gateway-service
+    spec:
+      containers:
+      - name: gateway-service
+        image: your-dockerhub/gateway-service:latest
+        ports:
+        - containerPort: 3003
+        env:
+        - name: USER_SERVICE_URL
+          value: "http://user-service:3000"
+        - name: PRODUCT_SERVICE_URL
+          value: "http://product-service:3001"
+        - name: ORDER_SERVICE_URL
+          value: "http://order-service:3002"
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "256Mi"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3003
+          initialDelaySeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3003
+          initialDelaySeconds: 5
