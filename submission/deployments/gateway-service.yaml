@@ -34,11 +34,11 @@ spec:
             memory: "256Mi"
         livenessProbe:
           httpGet:
-            path: /
+            path: /health
             port: 3003
           initialDelaySeconds: 10
         readinessProbe:
           httpGet:
-            path: /
+            path: /health
             port: 3003
           initialDelaySeconds: 5

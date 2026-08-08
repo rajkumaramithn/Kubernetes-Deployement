@@ -30,13 +30,13 @@ spec:
           value: "user-service"
         livenessProbe:
           httpGet:
-            path: /
+            path: /health
             port: 3000
           initialDelaySeconds: 10
           periodSeconds: 10
         readinessProbe:
           httpGet:
-            path: /
+            path: /health
             port: 3000
           initialDelaySeconds: 5
           periodSeconds: 5
